@@ -1,12 +1,16 @@
 package lab1;
-
+/*
+    *by Jackie Li
+    *COE528 Lab1 Flight Booking System
+    *Section 10 for Luella Marcos
+*/
 public class flight {
     private int flightNumber;
     private String origin;
     private String destination;
     private String departureTime;
     private int capacity;
-    static private int numberOfSeatsLeft;
+    private int numberOfSeatsLeft;
     private double originalPrice;
 
     public flight(int flightNumber, String origin, String destination, String departureTime, int capacity, double originalPrice) {
@@ -44,13 +48,17 @@ public class flight {
         return this.capacity;
     }
 
+    public int getNumberofSeats() {
+        return numberOfSeatsLeft;
+    }
+    
     public double getOriginalPrice() {
         return this.originalPrice;
     }
 
     public boolean bookSeat() {
-        if (numberOfSeatsLeft > 0) {
-            numberOfSeatsLeft--;
+        if (this.numberOfSeatsLeft > 0) {
+            this.numberOfSeatsLeft--;
             return true;
         }
         else {

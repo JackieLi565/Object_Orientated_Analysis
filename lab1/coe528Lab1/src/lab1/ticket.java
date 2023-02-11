@@ -1,12 +1,16 @@
 package lab1;
-
+/*
+    *by Jackie Li
+    *COE528 Lab1 Flight Booking System
+    *Section 10 for Luella Marcos
+*/
 public class ticket {
     private flight flight;
     private passenger passenger;
-    private int price;
+    private double price;
     private static int ticketNumber;
 
-    ticket(flight flight, passenger passenger, int price, int ticketNumber) {
+    ticket(flight flight, passenger passenger, double price, int flightNumber) {
         this.flight = flight;
         this.passenger = passenger;
         this.price = price;
@@ -20,12 +24,12 @@ public class ticket {
     public passenger getPassenger() {
         return this.passenger;
     }
-    
+
     public int getTicketNumber() {
         return ticketNumber;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return this.price;
     }
  

@@ -1,6 +1,10 @@
-package lab1.coe528Lab1.test;
-import lab1.*;
+package lab1;
 
+/*
+    *by Jackie Li
+    *COE528 Lab1 Flight Booking System
+    *Section 10 for Luella Marcos
+*/
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class flightTest {
     flight flightTest;
-    
+
     @Before
     public void setUp() {
         int flightNumber = 888;
@@ -18,21 +22,52 @@ public class flightTest {
         int capacity = 100;
         double originalPrice = 780.89;
         flightTest = new flight(flightNumber, origin, destination, departureTime, capacity, originalPrice);
+        flightTest.bookSeat();
     }
-    
+
     @After
     public void tearDown() {
         flightTest = null;
     }
-    
+
     @Test
-    public void testConstructoor() {
-    
+    public void testConstructor() {
+        boolean actual;
+        try {
+            int flightNumber = 888;
+            String origin = "Toronto";
+            String destination = "Vancouver";
+            String departureTime = "01/02/03 2:30 pm";
+            int capacity = 100;
+            double originalPrice = 780.89;
+            flightTest = new flight(flightNumber, origin, destination, departureTime, capacity, originalPrice);
+
+            actual = true;
+        } catch (IllegalArgumentException e) {
+            actual = false;
+        }
+
+        assertTrue("Constructor Passed", actual);
     }
-    
+
     @Test
-    public void testInvalidConstructoor() {
-    
+    public void testInvalidConstructor() {
+        boolean actual;
+        try {
+            int flightNumber = 888;
+            String origin = "Toronto";
+            String destination = "Toronto";
+            String departureTime = "01/02/03 2:30 pm";
+            int capacity = 100;
+            double originalPrice = 780.89;
+            flightTest = new flight(flightNumber, origin, destination, departureTime, capacity, originalPrice);
+
+            actual = false;
+        } catch (IllegalArgumentException e) {
+            actual = true;
+        }
+
+        assertTrue("InvalidConstructor Passed", actual);
     }
 
     /**
@@ -42,7 +77,7 @@ public class flightTest {
     public void testGetFlightNumber() {
         int answer = 888;
         int result = flightTest.getFlightNumber();
-        assertEquals(answer, result);
+        assertEquals("FlightNumber Passed", answer, result);
     }
 
     /**
@@ -52,7 +87,7 @@ public class flightTest {
     public void testGetOrigin() {
         String expected = "Toronto";
         String actual = flightTest.getOrigin();
-        assertTrue(expected.equals(actual));
+        assertTrue("GetOrigin Passed", expected.equals(actual));
     }
 
     /**
@@ -62,7 +97,7 @@ public class flightTest {
     public void testGetDestination() {
         String expected = "Vancouver";
         String actual = flightTest.getDestination();
-        assertTrue(expected.equals(actual));
+        assertTrue("GetDestination Passed", expected.equals(actual));
     }
 
     /**
@@ -72,7 +107,7 @@ public class flightTest {
     public void testGetDepartureTime() {
         String expected = "01/02/03 2:30 pm";
         String actual = flightTest.getDepartureTime();
-        assertTrue(expected.equals(actual));
+        assertTrue("GetDepartureTime Passed", expected.equals(actual));
     }
 
     /**
@@ -82,7 +117,7 @@ public class flightTest {
     public void testGetCapacity() {
         int expected = 100;
         int actual = flightTest.getCapacity();
-        assertEquals(expected,actual);
+        assertEquals("GetCapacity Passed", expected, actual);
     }
 
     /**
@@ -92,7 +127,17 @@ public class flightTest {
     public void testGetOriginalPrice() {
         double expected = 780.89;
         double actual = flightTest.getOriginalPrice();
-        assertEquals(expected,actual,0.001);
+        assertEquals("GetOriginalPrice Passed", expected, actual, 0.001);
+    }
+
+    /**
+     * Test of getNumberofSeats method, of class flight.
+     */
+    @Test
+    public void testGetNumberOfSeats() {
+        int expected = 99;
+        int actual = flightTest.getNumberofSeats();
+        assertEquals("GetNumberOfSeats Passed", expected, actual);
     }
 
     /**
@@ -102,7 +147,7 @@ public class flightTest {
     public void testBookSeat() {
         boolean expected = true;
         boolean actual = flightTest.bookSeat();
-        assertEquals(expected,actual);
+        assertEquals("BookedSeat Passed", expected, actual);
     }
 
     /**
@@ -110,6 +155,9 @@ public class flightTest {
      */
     @Test
     public void testToString() {
+        String expected = "Flight: 888, Toronto to Vancouver, 01/02/03 2:30 pm, Original Price: 780.89$";
+        String actual = flightTest.toString();
+        assertEquals("ToStirng Passed", expected, actual);
     }
-    
+
 }
